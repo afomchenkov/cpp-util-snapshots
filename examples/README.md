@@ -42,24 +42,26 @@ Each object passes through the following stages:
 The stdlib provides you with the standard exception classes in the <stdexcept> header.
 The superclass for all the standard exception classes is the class std::exception. All the
 subclasses in std::exception can be partitioned into three groups:
+```
 - logic errors
 - runtime errors
 - language support errors
 
-           * exception
+            exception
                 |
          ----------------
         |                |
- * runtime_error     * logic_error
- - system_error      - domain_error
- - underflow_error   - invalid_argument
- - overflow_error    - length_error
-                     - out_of_range
+  runtime_error      logic_error
+  system_error       domain_error
+  underflow_error    invalid_argument
+  overflow_error     length_error
+                     out_of_range
 
- - bad_cast
- - bad_alloc
+  bad_cast
+  bad_alloc
+```
 
 You can define your own exceptions whenever you’d like; usually, these user-defined exceptions inherit
-from std::exception. All the classes from stdlib use exceptions that derive from std::exception. 
+from std::exception. All the classes from stdlib use exceptions that derive from std::exception.
 This makes it easy to catch all exceptions, whether from your code or from the stdlib, with a single 
 catch block.
