@@ -63,3 +63,29 @@ You can define your own exceptions whenever you’d like; usually, these user-de
 from std::exception. All the classes from stdlib use exceptions that derive from std::exception. 
 This makes it easy to catch all exceptions, whether from your code or from the stdlib, with a single 
 catch block.
+
+> When you implement copy behavior, think about the following criteria:
+> - Correctness: You must ensure that class invariants are maintained.
+> - Independence: After copy assignment or copy construction, the original object and the copy shouldn’t change
+>   each other’s state during modification.
+> - Equivalence: The original and the copy should be the same. The semantics of sameness depend on context.
+>   But generally, an operation applied to the original should yield the same result when applied to the copy.
+
+In C++ value categories are complicated:
+- an expression can be a “generalized lvalue” (glvalue)
+- a “pure rvalue” (prvalue)
+- an “expiring value” (xvalue)
+- an lvalue (a glvalue that isn’t an xvalue)
+- an rvalue (a prvalue or an xvalue)
+
+An lvalue is any value that has a name, and an rvalue is anything that isn’t an lvalue.
+
+Compiler-Generated Methods
+Five methods govern move and copy behavior:
+• The destructor
+• The copy constructor
+• The move constructor
+• The copy assignment operator
+• The move assignment operator
+
+
