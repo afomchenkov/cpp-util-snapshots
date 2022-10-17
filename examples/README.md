@@ -91,3 +91,34 @@ Five methods govern move and copy behavior:
 • The move assignment operator
 
 
+## Runtime/Compile-time polymorphism
+
+Virtual functions can incur runtime overhead, although the cost is typically low (within 25 
+percent of a regular function call). The compiler generates virtual function tables (vtables) 
+that contain function pointers. At runtime, a consumer of an interface doesn’t generally know 
+its underlying type, but it knows how to invoke the interface’s methods (thanks to the vtable). 
+In some circumstances, the linker can detect all uses of an interface and devirtualize a 
+function call. This removes the function call from the vtable and thus eliminates associated 
+runtime cost.
+
+The compiler cannot know ahead of time how much memory to allocate for the underlying type:
+if the compiler could know the underlying type, you would be better off using templates.
+> There are two options for how to set the member:
+> - Constructor injection: With constructor injection, you typically use an interface reference.
+>   Because references cannot be reseated, they won’t change for the lifetime of the object.
+> - Property injection: With property injection, you use a method to set a pointer member. This 
+>   allows you to change the object to which the member points.
+
+You can combine these approaches by accepting an interface pointer in a constructor while also 
+providing a method to set the pointer to some­ thing else.
+
+
+When you want polymorphism, you should use templates. But sometimes you can’t use templates 
+because you won’t know the types used with your code until runtime. Remember that template
+instantiation only occurs when you pair a template’s parameters with types. At this point,
+the compiler can instantiate a custom class for you. In some situations, you might not be able
+to perform such pairings until your program is executing (or, at least, performing such pairing
+at compile time would be tedious). In such cases, you can use runtime polymorphism. Whereas
+the template is the mechanism for achieving compile-time polymorphism, the runtime mechanism
+is the interface.
+
