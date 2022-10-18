@@ -36,7 +36,6 @@ using namespace std;
  * search("bad"); -> true
  * search(".ad"); -> true
  * search("b.."); -> true
- * 
  */
 
 class TrieNode {

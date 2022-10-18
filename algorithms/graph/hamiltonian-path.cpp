@@ -31,7 +31,6 @@ using namespace std;
  * Given an undirected graph, print all Hamiltonian paths present in it. The
  * Hamiltonian path in an undirected or directed graph is a path that visits
  * each vertex exactly once.
- *
  */
 
 struct Edge {

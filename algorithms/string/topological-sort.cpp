@@ -27,54 +27,49 @@
 
 using namespace std;
 
-class Graph
-{
+class Graph {
   int V;
   list<pair<int, int>> *l;
 
 public:
-  Graph(int v)
-  {
+  Graph(int v) {
     V = v;
     l = new list<pair<int, int>>[V];
   }
-  void addEdge(int u, int v, int wt, bool bidir = true)
-  {
+
+  void addEdge(int u, int v, int wt, bool bidir = true) {
     l[u].push_back(make_pair(v, wt));
-    if (bidir)
-    {
+
+    if (bidir) {
       l[v].push_back(make_pair(u, wt));
     }
   }
-  void topologicalSort()
-  {
+
+  void topologicalSort() {
     int *indegree = new int[V]{0};
     // iterate over all edges
-    for (int i = 0; i < V; i++)
-    {
-      for (auto it = l[i].begin(); it != l[i].end(); it++)
-      {
+    for (int i = 0; i < V; i++) {
+      for (auto it = l[i].begin(); it != l[i].end(); it++) {
         indegree[it->first]++;
       }
     }
+
     queue<int> q;
-    for (int i = 0; i < V; i++)
-    {
-      if (indegree[i] == 0)
-      {
+    for (int i = 0; i < V; i++) {
+      if (indegree[i] == 0) {
         q.push(i);
       }
     }
-    while (!q.empty())
-    {
+
+    while (!q.empty()) {
       int f = q.front();
       cout << f << " ";
       q.pop();
-      for (auto it = l[f].begin(); it != l[f].end(); it++)
-      {
+
+      for (auto it = l[f].begin(); it != l[f].end(); it++) {
         indegree[it->first]--;
-        if (indegree[it->first] == 0)
-        {
+
+        if (indegree[it->first] == 0) {
           q.push(it->first);
         }
       }
