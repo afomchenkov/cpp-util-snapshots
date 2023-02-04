@@ -90,6 +90,7 @@
         "algorithm": "c",
         "functional": "c",
         "iterator": "c",
-        "utility": "c"
+        "utility": "c",
+        "filesystem": "c"
     }
 }
